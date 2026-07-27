@@ -1,0 +1,8 @@
+# Supabase local/CLI config — project itself is created in the personal dashboard.
+project_id = "camis-meal-planner"
+
+[api]
+enabled = true
+
+[db]
+major_version = 15
