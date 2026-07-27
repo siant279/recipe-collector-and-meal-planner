@@ -97,20 +97,3 @@ create policy "household read/write plan" on meal_plan
   for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 create policy "household read/write shopping list" on shopping_list_items
   for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
-
--- Storage bucket for recipe uploads (Phase 2)
-insert into storage.buckets (id, name, public)
-values ('recipe-uploads', 'recipe-uploads', false)
-on conflict (id) do nothing;
-
-create policy "authenticated upload recipe files"
-  on storage.objects for insert
-  with check (bucket_id = 'recipe-uploads' and auth.role() = 'authenticated');
-
-create policy "authenticated read recipe files"
-  on storage.objects for select
-  using (bucket_id = 'recipe-uploads' and auth.role() = 'authenticated');
-
-create policy "authenticated delete recipe files"
-  on storage.objects for delete
-  using (bucket_id = 'recipe-uploads' and auth.role() = 'authenticated');

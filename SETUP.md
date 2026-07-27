@@ -35,4 +35,4 @@ npm run dev
 
 ## 5. Phase 3 (optional later)
 
-Set Gmail/Drive OAuth env vars and `CRON_SECRET`. Cron hits `/api/ingest` every 6 hours (`vercel.json`).
+Set Gmail/Drive OAuth env vars and `CRON_SECRET`. Cron hits `/api/ingest` once daily at 14:00 UTC (`vercel.json`; Hobby plan allows one run/day).
