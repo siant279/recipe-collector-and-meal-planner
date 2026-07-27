@@ -12,9 +12,11 @@ import { createAdminClient } from "@/lib/supabase/middleware";
 
 function authorize(request: Request) {
   const secret = process.env.CRON_SECRET;
-  if (!secret) return false;
   const header = request.headers.get("authorization");
-  return header === `Bearer ${secret}`;
+  if (secret && header === `Bearer ${secret}`) return true;
+  // Vercel Cron sends this header on scheduled invocations
+  if (request.headers.get("x-vercel-cron") === "1") return true;
+  return false;
 }
 
 export async function GET(request: Request) {
