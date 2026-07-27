@@ -25,6 +25,10 @@ next-env.d.ts
 # Vercel / Supabase local
 .vercel
 .supabase/
+supabase/.temp/
+
+# Cursor
+.cursor/
 
 # KEIC source materials — local reference only, do not commit
 *.pdf
