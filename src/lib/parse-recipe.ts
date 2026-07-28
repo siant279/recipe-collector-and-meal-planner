@@ -1,5 +1,10 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { ParsedRecipeDraft } from "@/lib/types";
+import {
+  detectPaywall,
+  fetchHtml,
+  pageHasRecipeJsonLd,
+} from "@/lib/discover-recipes";
 
 const SYSTEM = `You extract kid-friendly recipes into JSON for a household meal planner.
 Return ONLY valid JSON matching this shape (no markdown fences, no commentary):
@@ -201,21 +206,16 @@ export async function parseRecipeWithClaude(raw: string): Promise<ParsedRecipeDr
 }
 
 export async function fetchUrlText(url: string): Promise<string> {
-  const res = await fetch(url, {
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (compatible; CamisMealPlanner/1.0; +https://camis-meal-planner.vercel.app)",
-      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      "Accept-Language": "en-US,en;q=0.9",
-    },
-    redirect: "follow",
-    signal: AbortSignal.timeout(25000),
-  });
-  if (!res.ok) throw new Error(`Failed to fetch URL (${res.status})`);
-  const html = await res.text();
+  const html = await fetchHtml(url);
+  const plain = htmlToPlainText(html);
+
+  const paywall = detectPaywall(html, plain);
+  // If paywalled AND no structured recipe, refuse
+  if (paywall && !pageHasRecipeJsonLd(html)) {
+    throw new Error(paywall);
+  }
 
   const jsonLd = extractRecipeJsonLd(html);
-  const plain = htmlToPlainText(html);
 
   if (jsonLd) {
     return [
@@ -227,6 +227,10 @@ export async function fetchUrlText(url: string): Promise<string> {
       "Page text excerpt:",
       plain.slice(0, 12000),
     ].join("\n");
+  }
+
+  if (paywall) {
+    throw new Error(paywall);
   }
 
   if (plain.length < 80) {
