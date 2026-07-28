@@ -51,7 +51,7 @@ export default function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2.5 outline-none ring-[var(--grape)] focus:ring-2"
+              className="w-full rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2.5 outline-none ring-[var(--forest)] focus:ring-2"
               autoComplete="email"
             />
           </label>
@@ -62,12 +62,12 @@ export default function LoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2.5 outline-none ring-[var(--grape)] focus:ring-2"
+              className="w-full rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2.5 outline-none ring-[var(--forest)] focus:ring-2"
               autoComplete="current-password"
             />
           </label>
           {error ? (
-            <p className="text-sm font-semibold text-[var(--berry)]">{error}</p>
+            <p className="text-sm font-semibold text-[var(--clay)]">{error}</p>
           ) : null}
           <button type="submit" className="btn btn-primary w-full" disabled={loading}>
             {loading ? "Signing in…" : "Sign in"}

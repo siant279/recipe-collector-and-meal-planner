@@ -11,7 +11,7 @@ export default async function ShopPage() {
     .order("created_at", { ascending: false });
 
   if (error) {
-    return <p className="text-[var(--berry)]">{error.message}</p>;
+    return <p className="text-[var(--clay)]">{error.message}</p>;
   }
 
   return <ShopClient items={(data ?? []) as ShoppingListItem[]} />;

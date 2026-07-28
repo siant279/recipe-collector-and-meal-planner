@@ -65,7 +65,7 @@ export function ReviewClient({ submissions }: { submissions: RecipeSubmission[] 
         <p className="mt-2 text-[var(--ink-soft)]">
           Approve, edit, or reject parsed recipes before they enter the library.
         </p>
-        {msg ? <p className="mt-2 text-sm font-semibold text-[var(--leaf)]">{msg}</p> : null}
+        {msg ? <p className="mt-2 text-sm font-semibold text-[var(--forest)]">{msg}</p> : null}
       </div>
 
       {submissions.length === 0 ? (
@@ -84,7 +84,7 @@ export function ReviewClient({ submissions }: { submissions: RecipeSubmission[] 
                   </span>
                 </div>
                 {sub.parse_error ? (
-                  <p className="text-sm font-semibold text-[var(--berry)]">
+                  <p className="text-sm font-semibold text-[var(--clay)]">
                     {sub.parse_error}
                   </p>
                 ) : null}

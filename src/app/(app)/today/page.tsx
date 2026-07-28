@@ -8,7 +8,7 @@ export default async function TodayPage() {
 
   if (error) {
     return (
-      <p className="text-[var(--berry)]">
+      <p className="text-[var(--clay)]">
         Could not load recipes. Apply migrations and seed data first. ({error.message})
       </p>
     );

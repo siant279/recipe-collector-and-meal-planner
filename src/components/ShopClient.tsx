@@ -46,7 +46,7 @@ export function ShopClient({ items }: { items: ShoppingListItem[] }) {
           <p className="mt-2 text-[var(--ink-soft)]">
             Shared checklist. Generate pulls ingredients from the week’s plan and dedupes them.
           </p>
-          {msg ? <p className="mt-2 text-sm font-semibold text-[var(--leaf)]">{msg}</p> : null}
+          {msg ? <p className="mt-2 text-sm font-semibold text-[var(--forest)]">{msg}</p> : null}
         </div>
         <button
           type="button"
@@ -63,7 +63,7 @@ export function ShopClient({ items }: { items: ShoppingListItem[] }) {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Add an item…"
-          className="flex-1 rounded-xl border border-[var(--haze)] bg-white/70 px-3 py-2 outline-none ring-[var(--leaf)] focus:ring-2"
+          className="flex-1 rounded-xl border border-[var(--haze)] bg-white/70 px-3 py-2 outline-none ring-[var(--forest)] focus:ring-2"
         />
         <button type="submit" className="btn btn-secondary" disabled={pending}>
           Add
@@ -84,7 +84,7 @@ export function ShopClient({ items }: { items: ShoppingListItem[] }) {
                     await toggleShopItem(item.id, !item.checked);
                   })
                 }
-                className="size-4 accent-[var(--leaf)]"
+                className="size-4 accent-[var(--forest)]"
               />
               <span
                 className={`flex-1 ${item.checked ? "text-[var(--ink-soft)] line-through" : ""}`}

@@ -53,7 +53,7 @@ export function TodayPicks({ recipes }: { recipes: Recipe[] }) {
           to the shared plan.
         </p>
         {message ? (
-          <p className="mt-3 text-sm font-semibold text-[var(--grape)]">{message}</p>
+          <p className="mt-3 text-sm font-semibold text-[var(--forest)]">{message}</p>
         ) : null}
       </div>
 

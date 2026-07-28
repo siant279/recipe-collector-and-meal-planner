@@ -64,7 +64,7 @@ export function AddRecipeForm() {
           Paste a URL, text, or upload a file. Everything lands in the review queue before
           it joins the library.
         </p>
-        {msg ? <p className="mt-2 text-sm font-semibold text-[var(--leaf)]">{msg}</p> : null}
+        {msg ? <p className="mt-2 text-sm font-semibold text-[var(--forest)]">{msg}</p> : null}
       </div>
 
       <div className="mb-4 flex flex-wrap gap-2">
@@ -95,7 +95,7 @@ export function AddRecipeForm() {
               value={text}
               onChange={(e) => setText(e.target.value)}
               placeholder="Paste the recipe…"
-              className="w-full rounded-xl border border-[var(--haze)] bg-white/70 px-3 py-2 outline-none ring-[var(--leaf)] focus:ring-2"
+              className="w-full rounded-xl border border-[var(--haze)] bg-white/70 px-3 py-2 outline-none ring-[var(--forest)] focus:ring-2"
             />
             <button type="submit" className="btn btn-primary" disabled={pending}>
               {pending ? "Working…" : "Parse & review"}
@@ -111,7 +111,7 @@ export function AddRecipeForm() {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="https://…"
-              className="w-full rounded-xl border border-[var(--haze)] bg-white/70 px-3 py-2 outline-none ring-[var(--leaf)] focus:ring-2"
+              className="w-full rounded-xl border border-[var(--haze)] bg-white/70 px-3 py-2 outline-none ring-[var(--forest)] focus:ring-2"
             />
             <button type="submit" className="btn btn-primary" disabled={pending}>
               {pending ? "Working…" : "Fetch, parse & review"}

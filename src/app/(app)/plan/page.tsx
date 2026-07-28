@@ -22,7 +22,7 @@ export default async function PlanPage() {
     .order("plan_date");
 
   if (error) {
-    return <p className="text-[var(--berry)]">{error.message}</p>;
+    return <p className="text-[var(--clay)]">{error.message}</p>;
   }
 
   return <PlanClient rows={(data ?? []) as MealPlanRow[]} />;

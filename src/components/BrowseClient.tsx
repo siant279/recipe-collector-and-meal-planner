@@ -62,7 +62,7 @@ export function BrowseClient({ recipes }: { recipes: Recipe[] }) {
           {meal ? ` · ${MEAL_LABELS[meal]}` : ""}
           {audience === "cami" ? " · Cami-friendly" : audience === "adult" ? " · Adult" : ""}
         </p>
-        {msg ? <p className="mt-2 text-sm font-semibold text-[var(--grape)]">{msg}</p> : null}
+        {msg ? <p className="mt-2 text-sm font-semibold text-[var(--forest)]">{msg}</p> : null}
       </div>
 
       <div className="surface mb-6 space-y-4 p-4">
@@ -77,7 +77,7 @@ export function BrowseClient({ recipes }: { recipes: Recipe[] }) {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Search title or ingredients"
-            className="rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2 outline-none ring-[var(--grape)] focus:ring-2 sm:col-span-2"
+            className="rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2 outline-none ring-[var(--forest)] focus:ring-2 sm:col-span-2"
           />
           <select
             value={source}

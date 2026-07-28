@@ -6,7 +6,7 @@ export default async function BrowsePage() {
   const supabase = await createClient();
   const { data, error } = await supabase.from("recipes").select("*").order("title");
   if (error) {
-    return <p className="text-[var(--berry)]">{error.message}</p>;
+    return <p className="text-[var(--clay)]">{error.message}</p>;
   }
   return <BrowseClient recipes={(data ?? []) as Recipe[]} />;
 }
