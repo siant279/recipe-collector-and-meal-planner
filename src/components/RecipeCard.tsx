@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Recipe } from "@/lib/types";
 import { AudienceChip, MealChip } from "@/components/RecipeFilters";
 
@@ -14,20 +15,32 @@ export function RecipeCard({ recipe, actions, compact, slotLabel }: Props) {
   return (
     <article className="surface fade-up flex flex-col gap-3 p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
+        <div className="min-w-0 flex-1">
           {slotLabel ? (
             <p className="mb-1 text-xs font-extrabold uppercase tracking-widest text-[var(--ink-soft)]">
               {slotLabel}
             </p>
           ) : null}
-          <h3 className="font-[family-name:var(--font-display)] text-xl font-bold leading-snug text-[var(--ink)]">
-            {recipe.title}
+          <h3 className="font-[family-name:var(--font-display)] text-xl font-bold leading-snug">
+            <Link
+              href={`/recipes/${recipe.id}`}
+              className="text-[var(--ink)] transition hover:text-[var(--forest)] hover:underline"
+            >
+              {recipe.title}
+            </Link>
           </h3>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {recipe.meal_type ? <MealChip mealType={recipe.meal_type} /> : null}
             {recipe.audience ? <AudienceChip audience={recipe.audience} /> : null}
             {recipe.source ? (
-              <span className="chip" style={{ background: "rgba(45,27,61,0.08)", color: "var(--ink-soft)", textTransform: "none" }}>
+              <span
+                className="chip"
+                style={{
+                  background: "rgba(44,36,22,0.08)",
+                  color: "var(--ink-soft)",
+                  textTransform: "none",
+                }}
+              >
                 {recipe.source}
               </span>
             ) : null}
@@ -73,8 +86,21 @@ export function RecipeCard({ recipe, actions, compact, slotLabel }: Props) {
               {recipe.optional_sides.join(" · ")}
             </p>
           ) : null}
+          <Link
+            href={`/recipes/${recipe.id}`}
+            className="text-sm font-extrabold text-[var(--forest)] hover:underline"
+          >
+            Open full recipe →
+          </Link>
         </>
-      ) : null}
+      ) : (
+        <Link
+          href={`/recipes/${recipe.id}`}
+          className="w-fit text-sm font-extrabold text-[var(--forest)] hover:underline"
+        >
+          View full recipe →
+        </Link>
+      )}
     </article>
   );
 }

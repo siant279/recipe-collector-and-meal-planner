@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useTransition } from "react";
+import Link from "next/link";
 import type { MealPlanRow, MealType } from "@/lib/types";
 import { MEAL_SLOTS, todayISO } from "@/lib/recipes";
 import { MealChip } from "@/components/RecipeFilters";
@@ -64,9 +65,18 @@ export function PlanClient({ rows }: { rows: MealPlanRow[] }) {
                   >
                     <div className="flex flex-wrap items-center gap-2">
                       <MealChip mealType={meal} />
-                      <span className="font-semibold">
-                        {recipe?.title ?? "— empty —"}
-                      </span>
+                      {recipe ? (
+                        <Link
+                          href={`/recipes/${recipe.id}`}
+                          className="font-semibold hover:text-[var(--forest)] hover:underline"
+                        >
+                          {recipe.title}
+                        </Link>
+                      ) : (
+                        <span className="font-semibold text-[var(--ink-soft)]">
+                          — empty —
+                        </span>
+                      )}
                     </div>
                     {row ? (
                       <button
