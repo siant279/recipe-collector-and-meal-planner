@@ -59,6 +59,14 @@ export type ShoppingListItem = {
   created_at: string;
 };
 
+export type PantryItem = {
+  id: string;
+  text: string;
+  normalized: string;
+  added_by: string | null;
+  created_at: string;
+};
+
 export type RecipeSubmission = {
   id: string;
   raw_input: string | null;

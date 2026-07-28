@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import type { MealType, ParsedRecipeDraft } from "@/lib/types";
 import { dedupeIngredients } from "@/lib/recipes";
+import { normalizeIngredient, parsePantryInput } from "@/lib/pantry-match";
 
 async function requireUser() {
   const supabase = await createClient();
@@ -254,4 +255,78 @@ export async function updateSubmissionDraft(
     .eq("id", submissionId);
   if (error) throw new Error(error.message);
   revalidatePath("/review");
+}
+
+export async function addPantryItems(raw: string) {
+  const { supabase, user } = await requireUser();
+  const items = parsePantryInput(raw);
+  if (!items.length) return { added: 0 };
+
+  let added = 0;
+  for (const text of items) {
+    const normalized = normalizeIngredient(text);
+    if (!normalized) continue;
+    const { data: existing } = await supabase
+      .from("pantry_items")
+      .select("id")
+      .eq("normalized", normalized)
+      .maybeSingle();
+    if (existing) continue;
+    const { error } = await supabase.from("pantry_items").insert({
+      text,
+      normalized,
+      added_by: user.id,
+    });
+    if (!error) added += 1;
+  }
+  revalidatePath("/pantry");
+  return { added };
+}
+
+export async function removePantryItem(id: string) {
+  const { supabase } = await requireUser();
+  const { error } = await supabase.from("pantry_items").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/pantry");
+}
+
+export async function clearPantry() {
+  const { supabase } = await requireUser();
+  const { error } = await supabase
+    .from("pantry_items")
+    .delete()
+    .neq("id", "00000000-0000-0000-0000-000000000000");
+  if (error) throw new Error(error.message);
+  revalidatePath("/pantry");
+}
+
+export async function addMissingToShop(missing: string[], recipeId?: string | null) {
+  const { supabase, user } = await requireUser();
+  const items = dedupeIngredients(missing);
+  if (!items.length) return { added: 0 };
+
+  const { data: existing } = await supabase
+    .from("shopping_list_items")
+    .select("text")
+    .eq("checked", false);
+
+  const existingKeys = new Set(
+    (existing ?? []).map((i) => i.text.toLowerCase().replace(/\s+/g, " ").trim()),
+  );
+
+  const toInsert = items
+    .filter((t) => !existingKeys.has(t.toLowerCase().replace(/\s+/g, " ").trim()))
+    .map((text) => ({
+      text,
+      recipe_id: recipeId ?? null,
+      added_by: user.id,
+    }));
+
+  if (toInsert.length) {
+    const { error } = await supabase.from("shopping_list_items").insert(toInsert);
+    if (error) throw new Error(error.message);
+  }
+
+  revalidatePath("/shop");
+  return { added: toInsert.length };
 }

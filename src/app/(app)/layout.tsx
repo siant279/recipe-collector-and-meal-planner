@@ -7,6 +7,7 @@ import { APP_NAME, APP_TAGLINE } from "@/lib/labels";
 const NAV = [
   { href: "/today", label: "Today" },
   { href: "/browse", label: "Browse" },
+  { href: "/pantry", label: "Pantry" },
   { href: "/plan", label: "Plan" },
   { href: "/shop", label: "Shop" },
   { href: "/add", label: "Add" },
