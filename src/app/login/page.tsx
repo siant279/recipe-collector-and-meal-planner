@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import { APP_NAME, APP_TAGLINE } from "@/lib/labels";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -32,14 +33,14 @@ export default function LoginPage() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center px-5 py-12">
       <div className="surface fade-up p-8">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--ink-soft)]">
-          Household planner
+        <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[var(--ink-soft)]">
+          {APP_TAGLINE}
         </p>
-        <h1 className="brand-mark mt-2 text-4xl text-[var(--ink)]">
-          Cami&apos;s Meal Planner
+        <h1 className="brand-mark mt-2 text-3xl sm:text-4xl">
+          {APP_NAME}
         </h1>
         <p className="mt-3 text-[var(--ink-soft)]">
-          Sign in to see today&apos;s picks, the shared plan, and shopping list.
+          Sign in to collect recipes, plan meals, and share the shopping list.
         </p>
 
         <form onSubmit={onSubmit} className="mt-8 space-y-4">
@@ -50,7 +51,7 @@ export default function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-xl border border-[var(--haze)] bg-white/70 px-3 py-2.5 outline-none ring-[var(--leaf)] focus:ring-2"
+              className="w-full rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2.5 outline-none ring-[var(--grape)] focus:ring-2"
               autoComplete="email"
             />
           </label>
@@ -61,7 +62,7 @@ export default function LoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-xl border border-[var(--haze)] bg-white/70 px-3 py-2.5 outline-none ring-[var(--leaf)] focus:ring-2"
+              className="w-full rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2.5 outline-none ring-[var(--grape)] focus:ring-2"
               autoComplete="current-password"
             />
           </label>

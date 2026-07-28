@@ -25,7 +25,7 @@ export function pickForSlot(
   return pool[seed % pool.length] ?? null;
 }
 
-export const MEAL_SLOTS: MealType[] = ["breakfast", "lunch", "snack", "dinner"];
+export const MEAL_SLOTS: MealType[] = ["breakfast", "lunch", "dinner", "snack"];
 
 export function dedupeIngredients(lines: string[]): string[] {
   const seen = new Map<string, string>();

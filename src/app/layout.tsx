@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { APP_NAME } from "@/lib/labels";
 
 export const metadata: Metadata = {
-  title: "Cami's Meal Planner",
-  description: "Shared meal and snack planner for Cami",
+  title: APP_NAME,
+  description: "Collect recipes, plan meals, and build shopping lists together",
 };
 
 export default function RootLayout({

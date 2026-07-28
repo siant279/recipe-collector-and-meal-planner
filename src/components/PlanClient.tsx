@@ -3,6 +3,7 @@
 import { useMemo, useTransition } from "react";
 import type { MealPlanRow, MealType } from "@/lib/types";
 import { MEAL_SLOTS, todayISO } from "@/lib/recipes";
+import { MealChip } from "@/components/RecipeFilters";
 import { clearPlanSlot } from "@/app/actions";
 
 function addDays(iso: string, days: number) {
@@ -61,9 +62,9 @@ export function PlanClient({ rows }: { rows: MealPlanRow[] }) {
                     key={meal}
                     className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-white/45 px-3 py-2"
                   >
-                    <div>
-                      <span className="chip capitalize">{meal}</span>
-                      <span className="ml-2 font-semibold">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <MealChip mealType={meal} />
+                      <span className="font-semibold">
                         {recipe?.title ?? "— empty —"}
                       </span>
                     </div>

@@ -3,11 +3,16 @@
 import { useMemo, useState, useTransition } from "react";
 import type { MealType, Recipe } from "@/lib/types";
 import { MEAL_SLOTS, pickForSlot, todayISO } from "@/lib/recipes";
+import { MEAL_LABELS } from "@/lib/labels";
 import { RecipeCard } from "@/components/RecipeCard";
 import { addToPlan } from "@/app/actions";
 
 export function TodayPicks({ recipes }: { recipes: Recipe[] }) {
   const dateISO = todayISO();
+  const camiRecipes = useMemo(
+    () => recipes.filter((r) => r.audience === "cami" || r.audience == null),
+    [recipes],
+  );
   const [offsets, setOffsets] = useState<Record<MealType, number>>({
     breakfast: 0,
     lunch: 0,
@@ -20,9 +25,9 @@ export function TodayPicks({ recipes }: { recipes: Recipe[] }) {
   const picks = useMemo(() => {
     return MEAL_SLOTS.map((slot) => ({
       slot,
-      recipe: pickForSlot(recipes, slot, dateISO, offsets[slot]),
+      recipe: pickForSlot(camiRecipes, slot, dateISO, offsets[slot]),
     }));
-  }, [recipes, dateISO, offsets]);
+  }, [camiRecipes, dateISO, offsets]);
 
   function shuffle(slot: MealType) {
     setOffsets((prev) => ({ ...prev, [slot]: prev[slot] + 1 }));
@@ -44,11 +49,11 @@ export function TodayPicks({ recipes }: { recipes: Recipe[] }) {
       <div className="mb-6 max-w-2xl">
         <h2 className="brand-mark text-3xl sm:text-5xl">Today&apos;s picks</h2>
         <p className="mt-2 text-[var(--ink-soft)]">
-          A fresh breakfast, lunch, snack, and dinner for {dateISO}. Shuffle for
-          another option, or add to the shared plan.
+          Cami-friendly breakfast, lunch, snack & dinner for {dateISO}. Shuffle or add
+          to the shared plan.
         </p>
         {message ? (
-          <p className="mt-3 text-sm font-semibold text-[var(--leaf)]">{message}</p>
+          <p className="mt-3 text-sm font-semibold text-[var(--grape)]">{message}</p>
         ) : null}
       </div>
 
@@ -59,6 +64,7 @@ export function TodayPicks({ recipes }: { recipes: Recipe[] }) {
               <RecipeCard
                 recipe={recipe}
                 compact
+                slotLabel={MEAL_LABELS[slot]}
                 actions={
                   <div className="flex flex-wrap gap-2">
                     <button
@@ -82,7 +88,7 @@ export function TodayPicks({ recipes }: { recipes: Recipe[] }) {
             </div>
           ) : (
             <div key={slot} className="surface p-5 text-[var(--ink-soft)]">
-              No {slot} recipes yet.
+              No Cami-friendly {MEAL_LABELS[slot].toLowerCase()} recipes yet.
             </div>
           ),
         )}

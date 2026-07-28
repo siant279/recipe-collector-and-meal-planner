@@ -1,5 +1,7 @@
 export type MealType = "breakfast" | "lunch" | "snack" | "dinner";
 
+export type Audience = "cami" | "adult";
+
 export type RecipeSubmissionStatus =
   | "pending"
   | "parsed"
@@ -20,6 +22,7 @@ export type Recipe = {
   title: string;
   source: string | null;
   meal_type: MealType | null;
+  audience: Audience | null;
   day: number | null;
   servings: string | null;
   prep_time: string | null;
@@ -75,6 +78,7 @@ export type ParsedRecipeDraft = {
   title: string;
   source?: string | null;
   meal_type?: MealType | null;
+  audience?: Audience | null;
   servings?: string | null;
   prep_time?: string | null;
   cook_time?: string | null;

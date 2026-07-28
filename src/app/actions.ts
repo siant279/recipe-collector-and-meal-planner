@@ -180,6 +180,12 @@ export async function approveSubmission(submissionId: string, draft?: ParsedReci
   if (!parsed?.title || !parsed.ingredients?.length) {
     throw new Error("Parsed recipe is incomplete");
   }
+  if (!parsed.meal_type) {
+    throw new Error("Choose a meal type (breakfast, lunch, dinner, or snack)");
+  }
+  if (!parsed.audience) {
+    throw new Error("Choose who the recipe is for (Cami-friendly or Adult)");
+  }
 
   const { data: recipe, error: insertError } = await supabase
     .from("recipes")
@@ -187,6 +193,7 @@ export async function approveSubmission(submissionId: string, draft?: ParsedReci
       title: parsed.title,
       source: parsed.source ?? null,
       meal_type: parsed.meal_type ?? null,
+      audience: parsed.audience ?? null,
       servings: parsed.servings ?? null,
       prep_time: parsed.prep_time ?? null,
       cook_time: parsed.cook_time ?? null,

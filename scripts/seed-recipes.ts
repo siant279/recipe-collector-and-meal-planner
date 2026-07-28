@@ -66,6 +66,7 @@ async function main() {
     directions: mergeBrokenLines(r.directions ?? []),
     optional_sides: r.optional_sides ?? [],
     choking_flags: r.choking_flags ?? [],
+    audience: "cami" as const,
   }));
 
   const { count } = await supabase

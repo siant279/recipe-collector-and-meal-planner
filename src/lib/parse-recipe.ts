@@ -7,6 +7,7 @@ Return ONLY valid JSON matching this shape (no markdown fences, no commentary):
   "title": string,
   "source": string | null,
   "meal_type": "breakfast" | "lunch" | "snack" | "dinner" | null,
+  "audience": "cami" | "adult" | null,
   "servings": string | null,
   "prep_time": string | null,
   "cook_time": string | null,
@@ -90,10 +91,16 @@ function normalizeDraft(parsed: Record<string, unknown>): ParsedRecipeDraft {
       ? mealType
       : null;
 
+  const validAudience =
+    parsed.audience === "cami" || parsed.audience === "adult"
+      ? parsed.audience
+      : null;
+
   return {
     title,
     source: typeof parsed.source === "string" ? parsed.source : null,
     meal_type: validMeal,
+    audience: validAudience,
     servings: typeof parsed.servings === "string" ? parsed.servings : null,
     prep_time: typeof parsed.prep_time === "string" ? parsed.prep_time : null,
     cook_time: typeof parsed.cook_time === "string" ? parsed.cook_time : null,

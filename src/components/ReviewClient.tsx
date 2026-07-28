@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import type { ParsedRecipeDraft, RecipeSubmission } from "@/lib/types";
+import { MEAL_LABELS, AUDIENCE_LABELS } from "@/lib/labels";
 import {
   approveSubmission,
   rejectSubmission,
@@ -14,6 +15,7 @@ function draftFrom(sub: RecipeSubmission): ParsedRecipeDraft {
     title: p.title ?? "",
     source: p.source ?? null,
     meal_type: p.meal_type ?? null,
+    audience: p.audience ?? null,
     servings: p.servings ?? null,
     prep_time: p.prep_time ?? null,
     cook_time: p.cook_time ?? null,
@@ -44,6 +46,11 @@ export function ReviewClient({ submissions }: { submissions: RecipeSubmission[] 
       next = {
         ...base,
         meal_type: (value || null) as ParsedRecipeDraft["meal_type"],
+      };
+    } else if (key === "audience") {
+      next = {
+        ...base,
+        audience: (value || null) as ParsedRecipeDraft["audience"],
       };
     } else {
       next = { ...base, [key]: value };
@@ -91,25 +98,37 @@ export function ReviewClient({ submissions }: { submissions: RecipeSubmission[] 
                   />
                 </label>
 
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-3 sm:grid-cols-3">
                   <label className="block">
                     <span className="text-sm font-bold">Meal type</span>
                     <select
-                      className="mt-1 w-full rounded-xl border border-[var(--haze)] bg-white/70 px-3 py-2"
+                      className="mt-1 w-full rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2"
                       value={draft.meal_type ?? ""}
                       onChange={(e) => setField(sub, "meal_type", e.target.value)}
                     >
-                      <option value="">Unset</option>
-                      <option value="breakfast">Breakfast</option>
-                      <option value="lunch">Lunch</option>
-                      <option value="snack">Snack</option>
-                      <option value="dinner">Dinner</option>
+                      <option value="">Choose…</option>
+                      <option value="breakfast">{MEAL_LABELS.breakfast}</option>
+                      <option value="lunch">{MEAL_LABELS.lunch}</option>
+                      <option value="dinner">{MEAL_LABELS.dinner}</option>
+                      <option value="snack">{MEAL_LABELS.snack}</option>
+                    </select>
+                  </label>
+                  <label className="block">
+                    <span className="text-sm font-bold">Who is it for?</span>
+                    <select
+                      className="mt-1 w-full rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2"
+                      value={draft.audience ?? ""}
+                      onChange={(e) => setField(sub, "audience", e.target.value)}
+                    >
+                      <option value="">Choose…</option>
+                      <option value="cami">{AUDIENCE_LABELS.cami}</option>
+                      <option value="adult">{AUDIENCE_LABELS.adult}</option>
                     </select>
                   </label>
                   <label className="block">
                     <span className="text-sm font-bold">Source</span>
                     <input
-                      className="mt-1 w-full rounded-xl border border-[var(--haze)] bg-white/70 px-3 py-2"
+                      className="mt-1 w-full rounded-xl border border-[var(--haze)] bg-white/80 px-3 py-2"
                       value={draft.source ?? ""}
                       onChange={(e) => setField(sub, "source", e.target.value)}
                     />
