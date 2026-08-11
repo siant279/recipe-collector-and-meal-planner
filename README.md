@@ -1,6 +1,6 @@
-# Cami's Meal Planner
+# Recipe Collector and Meal Planner
 
-Shared meal & snack planner for Cami (ages 3–5). Two parents, one recipe library, one plan, one shopping list.
+Household recipe library, meal planner, and shopping list — with Cami-friendly and adult labels.
 
 **Live:** https://camis-meal-planner.vercel.app  
 **Repo:** https://github.com/siant279/camis-meal-planner (private)
@@ -8,7 +8,7 @@ Shared meal & snack planner for Cami (ages 3–5). Two parents, one recipe libra
 ## Stack
 
 - **Next.js** (App Router) on Vercel (`siant279s-projects` — personal, not Green & Rock)
-- **Supabase** project `camis-meal-planner` under **siant279's Org**
+- **Supabase** project `camis-meal-planner` under **siant279's Org** (infra ID unchanged)
 - Seed recipes from Kids Eat in Color cookbooks (`recipes.json`)
 
 ## Setup

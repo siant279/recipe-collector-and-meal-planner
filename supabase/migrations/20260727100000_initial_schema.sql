@@ -1,4 +1,4 @@
--- Cami's Meal Planner — initial schema
+-- Recipe Collector and Meal Planner — initial schema
 -- Two-user household. Shared data for all authenticated users.
 
 create extension if not exists "pgcrypto";

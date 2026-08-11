@@ -1,4 +1,4 @@
-# Cami's Meal Planner — Handoff Spec
+# Recipe Collector and Meal Planner — Handoff Spec
 
 ## Background
 Sian and her husband want a shared meal/snack planning app for their daughter Cami (age 3-5). It replaces a single-session prototype (a static HTML artifact) with a real multi-user web app: both parents log in, see the same recipe library, plan, and shopping list, and can each add new recipes they find (web links, forwarded emails, documents/photos, Google Drive uploads).

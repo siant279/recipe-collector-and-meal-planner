@@ -1,4 +1,4 @@
--- Cami's Meal Planner — Supabase Postgres schema
+-- Recipe Collector and Meal Planner — Supabase Postgres schema
 -- Two-user household app. Auth is handled by Supabase Auth (auth.users);
 -- every table below just references auth.uid() for who-did-what, but data
 -- itself is shared/visible to both household members (no per-user siloing).

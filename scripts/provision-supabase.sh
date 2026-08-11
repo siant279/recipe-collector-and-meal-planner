@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Provision personal Supabase project for Cami's Meal Planner.
+# Provision personal Supabase project for Recipe Collector and Meal Planner.
 # Usage:
 #   export SUPABASE_ACCESS_TOKEN=sbp_...   # from https://supabase.com/dashboard/account/tokens
 #   ./scripts/provision-supabase.sh

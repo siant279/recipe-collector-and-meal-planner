@@ -196,7 +196,7 @@ export async function fetchHtml(url: string): Promise<string> {
   const res = await fetch(url, {
     headers: {
       "User-Agent":
-        "Mozilla/5.0 (compatible; CamisMealPlanner/1.0; +https://camis-meal-planner.vercel.app)",
+        "Mozilla/5.0 (compatible; RecipeCollectorMealPlanner/1.0; +https://camis-meal-planner.vercel.app)",
       Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
       "Accept-Language": "en-US,en;q=0.9",
     },

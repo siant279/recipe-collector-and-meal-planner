@@ -75,7 +75,7 @@ button.ghost { background: transparent; color: #8a7e70; border-color: #ddd2c2; }
 </head>
 <body>
 <div class="wrap">
-  <h1>Cami's Meal & Snack Planner</h1>
+  <h1>Recipe Collector and Meal Planner</h1>
   <div class="sub">Built from Kids Eat in Color: Everyday Lunches, Everyday Snacks & Real Easy Weekdays &middot; <span id="recipeCount"></span> recipes</div>
 
   <div class="tabs">

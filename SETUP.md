@@ -1,4 +1,5 @@
-# Setup checklist — personal accounts only (siant279 / personal Supabase / personal Vercel)
+# Recipe Collector and Meal Planner — setup checklist
+# Personal accounts only (siant279 / personal Supabase / personal Vercel)
 
 ## 1. GitHub (`siant279`)
 
