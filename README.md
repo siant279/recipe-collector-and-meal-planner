@@ -2,13 +2,14 @@
 
 Household recipe library, meal planner, and shopping list — with Cami-friendly and adult labels.
 
-**Live:** https://camis-meal-planner.vercel.app  
-**Repo:** https://github.com/siant279/camis-meal-planner (private)
+**Live:** https://recipe-collector-and-meal-planner.vercel.app  
+**Repo:** https://github.com/siant279/recipe-collector-and-meal-planner (private)
 
 ## Stack
 
 - **Next.js** (App Router) on Vercel (`siant279s-projects` — personal, not Green & Rock)
-- **Supabase** project `camis-meal-planner` under **siant279's Org** (infra ID unchanged)
+- **Vercel project:** `recipe-collector-and-meal-planner`
+- **Supabase** project `camis-meal-planner` under **siant279's Org** (DB project ID unchanged)
 - Seed recipes from Kids Eat in Color cookbooks (`recipes.json`)
 
 ## Setup

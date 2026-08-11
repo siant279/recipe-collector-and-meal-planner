@@ -11,7 +11,7 @@ gh api user --jq .login                   # must print: siant279
 ## 2. Supabase (personal dashboard)
 
 1. https://supabase.com/dashboard — confirm you're on your **personal** account
-2. New project → name `camis-meal-planner`
+2. New project → name `camis-meal-planner` (Supabase DB project; can keep this ID)
 3. SQL Editor → paste/run `supabase/migrations/20260727100000_initial_schema.sql`
 4. Authentication → Users → add two email/password users (you + partner)
 5. Project Settings → API → copy URL, anon key, service role key into `.env.local`
@@ -30,9 +30,9 @@ npm run dev
 ## 4. Vercel (personal account)
 
 1. https://vercel.com — confirm **personal** team (not Green & Rock)
-2. Import `siant279/camis-meal-planner`
+2. Import `siant279/recipe-collector-and-meal-planner`
 3. Add the same env vars (+ `ANTHROPIC_API_KEY`, optional `CRON_SECRET`)
-4. Deploy
+4. Deploy → https://recipe-collector-and-meal-planner.vercel.app
 
 ## 5. Phase 3 (optional later)
 
