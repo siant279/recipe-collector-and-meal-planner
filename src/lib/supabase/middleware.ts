@@ -9,6 +9,7 @@ export async function updateSession(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      db: { schema: process.env.NEXT_PUBLIC_SUPABASE_DB_SCHEMA || "public" },
       cookies: {
         getAll() {
           return request.cookies.getAll();
@@ -56,6 +57,9 @@ export function createAdminClient() {
   return createServiceClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    { auth: { persistSession: false, autoRefreshToken: false } },
+    {
+      db: { schema: process.env.NEXT_PUBLIC_SUPABASE_DB_SCHEMA || "public" },
+      auth: { persistSession: false, autoRefreshToken: false },
+    },
   );
 }
